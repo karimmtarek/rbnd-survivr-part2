@@ -1,5 +1,6 @@
 class Jury
-  attr_accessor :members, :total_votes
+  attr_accessor :members
+  attr_reader :total_votes
 
   def initialize
     @members = []
@@ -11,23 +12,13 @@ class Jury
   end
 
   def cast_votes(finalists)
-    h = {}
+    votes = {}
 
     finalists.each do |finalist|
-      h[finalist] = 0
+      votes[finalist] = 0
     end
 
-    members.each do |member|
-      vote = finalists.sample
-      h[vote] += 1
-      puts "#{member} voted for #{vote}"
-    end
-
-    h
-  end
-
-  def total_votes
-    cast_votes(finalists).each { |_k, v| total_votes += v }
+    count_votes(finalists, votes)
   end
 
   def report_votes(final_votes = cast_votes(finalists))
@@ -45,5 +36,17 @@ class Jury
 
     puts "The winner of this game of Survivor is: #{winner.name.green}"
     winner
+  end
+
+  private
+
+  def count_votes(finalists, votes)
+    members.each do |member|
+      vote = finalists.sample
+      votes[vote] += 1
+      puts "#{member} voted for #{vote}"
+    end
+
+    votes
   end
 end

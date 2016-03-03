@@ -1,9 +1,9 @@
 class Tribe
-  attr_accessor :name, :members
+  attr_reader :name, :members
 
-  def initialize(prob)
-    @name = prob[:name]
-    @members = prob[:members]
+  def initialize(options)
+    @name = options[:name]
+    @members = options[:members]
     puts "#{name.blue} tribe has been created!"
   end
 

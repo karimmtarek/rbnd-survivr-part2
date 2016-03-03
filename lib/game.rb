@@ -32,10 +32,6 @@ class Game
   end
 
   def merge_tribes_members
-    new_tribe_members = []
-    tribes.each do |tribe|
-      new_tribe_members += tribe.members
-    end
-    new_tribe_members
+    tribes.map(&:members).flatten
   end
 end
