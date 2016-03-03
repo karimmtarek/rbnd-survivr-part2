@@ -20,7 +20,7 @@ class Jury
     members.each do |member|
       vote = finalists.sample
       h[vote] += 1
-      puts "#{member} voted for #{vote.to_s}"
+      puts "#{member} voted for #{vote}"
     end
 
     h
@@ -32,15 +32,18 @@ class Jury
 
   def report_votes(final_votes = cast_votes(finalists))
     final_votes.each do |k, v|
-      puts "#{k.to_s} has #{v} vote(s)."
+      puts "#{k} received #{v} vote"
     end
   end
 
   def announce_winner(final_votes = cast_votes(finalists))
     max_votes = final_votes.values.max
-    final_votes
-      .select { |_k, v| v == max_votes }
-      .keys
-      .first
+    winner = final_votes
+               .select { |_k, v| v == max_votes }
+               .keys
+               .first
+
+    puts "The winner of this game of Survivor is: #{winner.name.green}"
+    winner
   end
 end

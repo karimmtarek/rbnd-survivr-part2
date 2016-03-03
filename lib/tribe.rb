@@ -4,7 +4,7 @@ class Tribe
   def initialize(prob)
     @name = prob[:name]
     @members = prob[:members]
-    puts "#{self.name} tribe has been created!"
+    puts "#{name.blue} tribe has been created!"
   end
 
   def tribal_council(immune: nil)

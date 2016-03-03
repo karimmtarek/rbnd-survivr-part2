@@ -14,7 +14,10 @@ class Game
   end
 
   def individual_immunity_challenge
-    immunity_challenge.tribal_council
+    tribe = immunity_challenge
+    immune = tribe.members.sample
+    voted_off = tribe.members.delete(tribe.tribal_council(immune: immune))
+    voted_off
   end
 
   def clear_tribes
@@ -22,7 +25,7 @@ class Game
   end
 
   def merge(new_tribe_name)
-    new_tribe = Tribe.new({name: new_tribe_name, members: merge_tribes_members})
+    new_tribe = Tribe.new(name: new_tribe_name, members: merge_tribes_members)
     clear_tribes
     tribes << new_tribe
     new_tribe
