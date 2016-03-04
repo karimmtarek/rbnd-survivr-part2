@@ -1,8 +1,8 @@
 class Game
   attr_accessor :tribes
 
-  def initialize(tribe_1, tribe_2)
-    @tribes = [tribe_1, tribe_2]
+  def initialize(*tribes)
+    @tribes = tribes
   end
 
   def add_tribe(tribe)
@@ -21,7 +21,7 @@ class Game
   end
 
   def clear_tribes
-    self.tribes = []
+    tribes.clear
   end
 
   def merge(new_tribe_name)
