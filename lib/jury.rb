@@ -1,10 +1,8 @@
 class Jury
   attr_accessor :members
-  attr_reader :total_votes
 
   def initialize
     @members = []
-    @total_votes = 0
   end
 
   def add_member(name)
